@@ -4,7 +4,7 @@ import { IBaseChirp } from "../types";
 
 const chirpsRouter = express.Router();
 
-//Get all users
+//Get all Chirps
 chirpsRouter.get("/", async (req, res) => {
 	try {
 		const chirps = await db.chirps.getAll();
@@ -14,7 +14,7 @@ chirpsRouter.get("/", async (req, res) => {
 		res.status(500).json({ message: "Error cannot receive all chirps" });
 	}
 });
-// Get one user
+// Get one Chirp
 chirpsRouter.get("/:id", async (req, res) => {
 	const id = parseInt(req.params.id);
 
@@ -53,6 +53,7 @@ chirpsRouter.post("/", async (req, res) => {
 		res.status(500).json({ message: "Cannot create chirp" });
 	}
 });
+//Update Chirp
 chirpsRouter.put("/:id", async (req, res) => {
 	const { body, location } = req.body;
 	const id = parseInt(req.params.id);
