@@ -14,6 +14,7 @@ chirpsRouter.get("/", async (req, res) => {
 		res.status(500).json({ message: "Error cannot receive all chirps" });
 	}
 });
+
 // Get one Chirp
 chirpsRouter.get("/:id", async (req, res) => {
 	const id = parseInt(req.params.id);
@@ -35,9 +36,20 @@ chirpsRouter.get("/:id", async (req, res) => {
 		res.status(500).json({ message: "Error, cannot find a user with that id" });
 	}
 });
+
 // Create Chirp
 chirpsRouter.post("/", async (req, res) => {
 	const { body, location } = req.body;
+
+	if (!body || typeof body !== "string" || body.length > 150) {
+		return res.status(400).json({ message: "Body must be a string no longer than 150 characters." });
+	}
+
+	if (location) {
+		if (typeof location !== "string" || location.length > 50) {
+			res.status(400).json({ message: "Location must be a string no longer than 50 characters." });
+		}
+	}
 
 	try {
 		const newChirp: IBaseChirp = {
@@ -53,6 +65,7 @@ chirpsRouter.post("/", async (req, res) => {
 		res.status(500).json({ message: "Cannot create chirp" });
 	}
 });
+
 //Update Chirp
 chirpsRouter.put("/:id", async (req, res) => {
 	const { body, location } = req.body;
@@ -72,6 +85,7 @@ chirpsRouter.put("/:id", async (req, res) => {
 		res.status(500).json({ message: "Cannot update chirp" });
 	}
 });
+
 //Delete chirp
 chirpsRouter.delete("/:id", async (req, res) => {
 	const id = parseInt(req.params.id);

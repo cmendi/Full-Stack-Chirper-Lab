@@ -1,21 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./views/Home";
+import AllChirps from "./views/AllChirps";
+import ChirpDetails from "./views/ChirpDetails";
+import CreateChirp from "./views/CreateChirp";
+import EditChirp from "./views/EditChirp";
 
-interface AppProps {}
-
-const App = (props: AppProps) => {
-	const [data, setData] = useState("");
-
-	useEffect(() => {
-		fetch("http://localhost:3000/api/chirps")
-			.then((res) => res.json())
-			.then((data) => setData(data))
-			.catch((e) => console.log("[fetch erorr]", e));
-	}, []);
-
+const App = () => {
 	return (
-		<div className="mx-auto mt-5 w-25">
-			<div className="alert alert-info text-center">Hello</div>
-		</div>
+		<BrowserRouter>
+			<Navbar />
+			<main className="container">
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/chirps" element={<AllChirps />} />
+					<Route path="/chirps/new" element={<CreateChirp />} />
+					<Route path="/chirps/:id" element={<ChirpDetails />} />
+					<Route path="/chirps/:id/edit" element={<EditChirp />} />
+				</Routes>
+			</main>
+		</BrowserRouter>
 	);
 };
 
