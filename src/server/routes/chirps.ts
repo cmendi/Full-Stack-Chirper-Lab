@@ -58,8 +58,23 @@ chirpsRouter.post("/", async (req, res) => {
 			user_id: 1,
 		};
 
+		const potentialMentions = body.match(/@\w+/g);
+		const users = await db.users.getAll();
 		const results = await db.chirps.create(newChirp);
-		res.status(201).json({ message: "Successfully created chirp!", id: results.insertId });
+		const chirp_id = results.insertId;
+
+		if (potentialMentions) {
+			for await (const match of potentialMentions) {
+				const username = match.replace("@", "");
+				const foundUser = users.find((user) => user.handle === username);
+				if (foundUser) {
+					const user_id = foundUser.id;
+
+					await db.mentions.create({ user_id, chirp_id });
+				}
+			}
+		}
+		res.status(201).json({ message: "Successfully created chirp!", id: chirp_id });
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: "Cannot create chirp" });
@@ -77,6 +92,22 @@ chirpsRouter.put("/:id", async (req, res) => {
 			body,
 			user_id: 1,
 		};
+
+		await db.mentions.deleteByChirpId(id);
+		const potentialMentions = body.match(/@\w+/g);
+
+		if (potentialMentions) {
+			const users = await db.users.getAll();
+			for await (const match of potentialMentions) {
+				const username = match.replace("@", "");
+				const foundUser = users.find((user) => user.handle === username);
+				if (foundUser) {
+					const user_id = foundUser.id;
+
+					await db.mentions.create({ user_id, chirp_id: id });
+				}
+			}
+		}
 
 		await db.chirps.update(updatedChirp, id);
 		res.status(201).json({ message: "Successfully updated chirp!" });
