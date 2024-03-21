@@ -6,7 +6,7 @@ import AllChirps from "./views/AllChirps";
 import ChirpDetails from "./views/ChirpDetails";
 import CreateChirp from "./views/CreateChirp";
 import EditChirp from "./views/EditChirp";
-import ErrorPage from "./views/404";
+import ErrorPage from "./views/ErrorPage";
 
 const App = () => {
 	return (
