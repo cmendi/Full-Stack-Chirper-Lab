@@ -15,15 +15,33 @@ const CreateChirp = () => {
 
 	return (
 		<div className="row justify-content-center">
+			<h1 className="text-center m-5 fw-bold">Chirp It Up!</h1>
 			<div className="col-12 col-md-9">
-				<div className="card p-3 shadow-lg my-2">
-					<label>Chirp text:</label>
-					<input value={body} onChange={(e) => setBody(e.target.value)} type="text" className="form-control" />
-					<label>Location:</label>
-					<input value={location} onChange={(e) => setLocation(e.target.value)} type="text" className="form-control" />
-					<button onClick={handleAddChirp} className="btn btn-success">
-						Submit
-					</button>
+				<div className="card p-3 shadow-lg m-2">
+					<label className="m-2 fw-bold">Chirp text:</label>
+					<input
+						value={body}
+						onChange={(e) => setBody(e.target.value)}
+						type="text"
+						className="form-control"
+						placeholder="What we thinking about?"
+					/>
+					<label className="m-2 fw-bold">Location:</label>
+					<input
+						value={location}
+						onChange={(e) => setLocation(e.target.value)}
+						type="text"
+						className="form-control"
+						placeholder="Where we at?"
+					/>
+					<div className="mt-3">
+						<button
+							onClick={handleAddChirp}
+							className="btn btn-success mb-2"
+						>
+							Chirp It!
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
