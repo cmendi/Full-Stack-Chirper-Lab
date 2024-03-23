@@ -24,16 +24,8 @@ const ChirpDetails = () => {
 				<p>Created {new Date(chirp.created_at).toLocaleString()}</p>
 
 				<div className="card-footer">
-					<p>
-						Chirped from{" "}
-						{chirp.location
-							? chirp.location
-							: "Wouldn't you like to know."}
-					</p>
-					<Link
-						to={`/chirps/${chirp.id}/edit`}
-						className="btn btn-info m-1"
-					>
+					<p>Chirped from {chirp.location ? chirp.location : "Wouldn't you like to know."}</p>
+					<Link to={`/chirps/${chirp.id}/edit`} className="btn btn-info m-1">
 						Edit Chirp
 					</Link>
 				</div>

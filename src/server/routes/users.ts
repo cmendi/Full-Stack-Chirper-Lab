@@ -15,4 +15,14 @@ usersRouter.post("/", async (req, res) => {
 	}
 });
 
+usersRouter.get("/", async (req, res) => {
+	try {
+		const users = await db.users.getAll();
+		return res.json(users);
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: "Error cannot receive all users" });
+	}
+});
+
 export default usersRouter;
