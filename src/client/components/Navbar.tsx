@@ -17,7 +17,7 @@ const Navbar = () => {
 					Chirper
 				</Link>
 			</div>
-			<button className="navbar-toggler navbar-dark" type="button" onClick={handleToggleCollapse}>
+			<button className="navbar-toggler navbar-dark mx-4" type="button" onClick={handleToggleCollapse}>
 				<span className="navbar-toggler-icon"></span>
 			</button>
 
