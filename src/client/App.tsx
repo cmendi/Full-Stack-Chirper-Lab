@@ -22,7 +22,7 @@ const App = () => {
 					<Route path="/chirps/:id" element={<ChirpDetails />} />
 					<Route path="/chirps/:id/edit" element={<EditChirp />} />
 					<Route path="/chirps/admin" element={<AdminPanel />} />
-					<Route path="/users/user_id" element={<UserChirps />} />
+					<Route path="/chirps/user/:user_id" element={<UserChirps />} />
 					<Route path="*" element={<ErrorPage />} />
 				</Routes>
 			</main>

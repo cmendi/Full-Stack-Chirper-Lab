@@ -27,8 +27,7 @@ const AllChirps = () => {
 					<div className="col-12 col-md-7" key={`chirp-card-${chirp.id}`}>
 						<div className="card p-3 shadow-lg my-2 bg-white">
 							<h5>
-								{" "}
-								<Link to={""} className="text-decoration-none">
+								<Link to={`/chirps/user/${chirp.user_id}`} className="text-decoration-none">
 									@{getHandle(chirp.user_id)}
 								</Link>
 							</h5>

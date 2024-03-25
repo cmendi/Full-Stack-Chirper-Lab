@@ -18,6 +18,10 @@ $link-hover-color: darken($link-color, 10%);
 // Font
 $font-family-base: "Poppins", sans-serif;
 
+.card {
+	background-color: white;
+}
+
 .navbar-collapse {
     justify-content: flex-end;
 }

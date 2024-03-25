@@ -34,6 +34,9 @@ SELECT * FROM users;
 
 INSERT INTO chirps (user_id, body, location) VALUES
 (2, 'When is the next golf trip?', 'California'),
+(2, 'I am hungry', 'California'),
+(2, 'This place is awesome!', 'Palm Springs'),
+(2, 'Its so cold here', 'Mammoth Lakes'),
 (1, 'My first full stack CRUD app!', 'California');
 
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DELETE, GET } from "../services/fetchHelper";
 import { IChirp, IUser } from "../types";
+import { Link } from "react-router-dom";
 
 const AdminPanel = () => {
 	const [chirps, setChirps] = useState<IChirp[]>([]);
@@ -33,7 +34,11 @@ const AdminPanel = () => {
 				{chirps.map((chirp) => (
 					<div className="col-12 col-md-7" key={`chirp-card-${chirp.id}`}>
 						<div className="card p-3 shadow-lg my-2 bg-white">
-							<h5>@{getHandle(chirp.user_id)}</h5>
+							<h5>
+								<Link to={`/chirps/user/${chirp.user_id}`} className="text-decoration-none">
+									@{getHandle(chirp.user_id)}
+								</Link>
+							</h5>
 							<p>{chirp.body}</p>
 
 							<p>Created {new Date(chirp.created_at).toLocaleString()}</p>
