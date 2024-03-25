@@ -37,6 +37,18 @@ chirpsRouter.get("/:id", async (req, res) => {
 	}
 });
 
+//Get chirp from specific user
+chirpsRouter.get("/user/:user_id", async (req, res) => {
+	try {
+		const { user_id } = req.params;
+		const chirps = await db.chirps.getForUser(Number(user_id));
+		res.json(chirps);
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: "Error getting chirps from that user." });
+	}
+});
+
 // Create Chirp
 chirpsRouter.post("/", async (req, res) => {
 	const { body, location } = req.body;

@@ -8,6 +8,7 @@ import CreateChirp from "./views/CreateChirp";
 import EditChirp from "./views/EditChirp";
 import ErrorPage from "./views/ErrorPage";
 import AdminPanel from "./views/AdminPanel";
+import UserChirps from "./views/UserChirps";
 
 const App = () => {
 	return (
@@ -21,6 +22,7 @@ const App = () => {
 					<Route path="/chirps/:id" element={<ChirpDetails />} />
 					<Route path="/chirps/:id/edit" element={<EditChirp />} />
 					<Route path="/chirps/admin" element={<AdminPanel />} />
+					<Route path="/users/user_id" element={<UserChirps />} />
 					<Route path="*" element={<ErrorPage />} />
 				</Routes>
 			</main>
